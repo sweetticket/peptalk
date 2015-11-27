@@ -3,19 +3,12 @@ Courses = new Mongo.Collection("courses");
 Meteor.methods({
   addCourse: function (data, callback) {
     var course = {
-      "subject": data["subject"],
-      "catalogNbr": data["catalogNbr"],
-      "catalog": data["subject"] + data["catalogNbr"],
-      "titleLong": data["titleLong"],
-      "titleShort": data["titleShort"],
-      "instructor": data["instructor"],
-      "catalogWhenOffered": data["catalogWhenOffered"],
-      "description": data["description"],
-      "crseId": data["crseId"],
-      "classNbrs": [],
-      "votes": 0
+      "networkId": data["networkId"]
+      "title": data["title"],
+      "catalog": data["catalog"],
+      "categories":[]
     };
-
+    
     Courses.insert(course);
   },
 
@@ -23,30 +16,14 @@ Meteor.methods({
     Courses.remove({"_id": courseId});
   },
 
-  courseUpvote: function(courseCatalog) {
-    var course = Courses.findOne({"catalog": courseCatalog});
-    var courseId = course._id;
-
-    if (!Meteor.userId()) {
-      alert("You need to sign in first!");
-      return;
-    }
-
-    if (course.upvoters.indexOf(Meteor.userId()) > -1) {
-      var idx = course.upvoters.indexOf(Meteor.userId());
-      course.upvoters.splice(idx, 1); // updates in place
-      Courses.update(courseId, {
-        $set: {'upvoters': course.upvoters},
-        $inc: {'votes': -1}
-      });
-
-    } else {
-      course.upvoters.push(Meteor.userId());
-      Courses.update(courseId, {
-        $set: {'upvoters': course.upvoters},
-        $inc: {'votes': 1}
-      });
-    }
+  addCategory: function (courseId, category) {
+    var course = Courses.findOne({"_id": courseId});
+    course.categories.push(category);
+    Courses.update(courseId, {
+      $set: {'categories': course.categories}
+    });
   }
+
+
   
 });
