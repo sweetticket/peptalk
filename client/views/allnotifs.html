@@ -1,0 +1,33 @@
+<template name="AllNotifications">
+
+{{> NavWithSearch}}
+
+<div class="container-fluid coursedetail-container">
+  <div class="row-fluid">
+    <div class="container-fluid all-reviews">
+      <h3 class='user-profile-label'>Notifications</h3>
+      {{#each notification}}
+        <div class="review-item {{#if isRead}} new-notif {{/if}}">
+          <p class="review-item-head">
+            <span class="notif-date"></span>
+            {{#if isRead}}
+            <span class="is-new">NEW</span>
+            {{/if}}
+          <span class="num-votes">
+            {{#if isUpvote }}
+                &nbsp;<span class="glyphicon glyphicon-thumbs-up thumb" aria-hidden="true"></span>
+            {{ else }}
+                {{#if isDownvote}}
+                 &nbsp;<span class="glyphicon glyphicon-thumbs-down thumb" aria-hidden="true"></span>
+            {{/if}}
+          </span></p>
+          <p class="review-text">{{ msg }}</p>
+        </div>
+      {{/each}}
+
+    </div>
+    </div>
+  </div>
+</div>
+
+</template>

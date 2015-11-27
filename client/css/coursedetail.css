@@ -1,0 +1,319 @@
+#new-comment-container {
+  padding-bottom: 70px;
+}
+
+.single-comment {
+  padding-bottom: 30px;
+}
+
+.single-comment table {
+  position: relative;
+  width: 100%;
+}
+
+.single-comment td.votes-info {
+  width: 10%;
+}
+
+.single-comment td.comment-info {
+  width: 90%;
+}
+
+.comment-body {
+  word-break: break-word;
+}
+
+#new-comment-body {
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+  border-radius: 7px;
+  resize: none;
+  padding: 15px;
+  word-wrap: break-word;
+}
+
+.submit-comment {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.comments {
+  padding-top: 40px;
+}
+
+.commenter-username {
+  color: #751B1B;
+  line-height: 50px;
+  cursor: pointer;
+}
+
+.commenter-username:hover {
+  color: #942222;
+}
+
+.votes {
+  position: absolute;
+  top: 10px;
+}
+
+.edit-body {
+  border-radius: 7px;
+  resize: none;
+  width: 50vw;
+  word-wrap: break-word;
+  padding-bottom: 10px;
+}
+
+#new-comment-body:focus,
+#new-comment-body.focus {
+    outline-width: 0;
+    border: solid 1px #707070;
+    box-shadow: 0 0 5px 1px #969696;
+}
+
+.right-td-new {
+  position: relative;
+  top: 60px;
+}
+
+body{
+  font-family: WPDomino;
+  font-size: 18px;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+strong {
+  font-family: WPDomino;
+  font-weight: bold;
+}
+
+.total-votes {
+  color: #B23636;
+  padding-bottom: 20px;
+  font-size: 24px;
+}
+
+h2 {
+  font-family: Moon;
+  font-size: 40px;
+  padding-bottom: 30px;
+}
+
+.catalog {
+  font-family: BikoBold;
+  color: #942222;
+}
+
+.courseabout-container, .comments, .new-comment{
+  margin: 0 auto;
+  width: 70%;
+}
+
+
+.coursedetail-container{
+  width: 100%;  
+}
+
+.coursedetail-container .row-fluid{
+  width: 100%;
+}
+
+.courseabout-container {
+  padding-bottom: 60px;
+  line-height: 30px;
+}
+
+.navbar {
+  border-bottom: 1px solid #666666;
+}
+
+.comment-container{
+  width: 100%;
+  margin: 0;
+  background-color: #fff;
+  padding-top: 60px;
+  padding-bottom: 100px;
+}
+
+.course-upvote {
+  text-align: center;
+  padding-bottom: 30px;
+  padding-top: 10px;
+}
+
+.btn-course-upvote {
+  font-size: 20px;
+  text-align: center;
+  border: 1px rgba(255, 255, 255, 0) solid;
+  background-color: #B23636;
+  border-radius: 10px;
+  padding: 10px;
+  width: 360px;
+  color: #fff;
+  outline: none;
+}
+
+.btn-course-upvote:hover {
+  background-color: #942222;
+  -webkit-transition: all 0.2s linear;
+	transition: all 0.2s linear;
+}
+
+.btn-course-upvote:focus {
+  outline: none;
+}
+
+.comments-header {
+  font-family: Moon;
+  font-size: 30px;
+  padding-bottom: 10px;
+}
+
+.upvote, .downvote, .upvote:focus, .downvote:focus {
+  border: 0;
+  background: none;
+  outline: none;
+}
+
+.upvote:hover, .downvote:hover {
+  color: #B23636;
+}
+
+.right-td {
+  position: relative;
+  top: 50px;
+}
+
+.edit-comment, .delete-comment, .submit-edit-comment {
+  padding-right: 10px;
+  font-size: 14px;
+  color: rgba(102,102,102,0.7);
+}
+
+.coursedetail-container{
+  padding: 0;
+}
+
+.gold-trophy{
+  color: #B29706;
+}
+
+.silver-trophy {
+  color: #595959;
+}
+
+.createdat {
+  font-size: 16px;
+  color: rgba(102,102,102,0.7);
+  font-style: italic;
+}
+
+.edit-body {
+  display: block;
+}
+
+.edit-error-msg {
+  font-size: 14px;
+  font-style: italic;
+  color: #C0392B;
+  display: none;
+}
+
+.num-comment-votes {
+  width: 30px;
+  text-align: center;
+}
+
+/* ----------- Desktop ----------- */
+@media only screen 
+  and (min-width: 737px) { 
+
+.new-comment-table {
+  width: 60vw;
+  padding-left: 10px;
+  text-align: left;
+}
+
+.new-comment-table td.username {
+  font-weight: bold;
+  position: relative;   
+  top: -15px;
+}
+
+.author {
+  height: 40px;
+}
+
+}
+
+/* ----------- iPhone ----------- */
+
+/* Portrait  */
+@media only screen 
+  and (min-width: 280px) 
+  and (max-width: 736px) {
+    .courseabout-container {
+      width: 100%;
+    }
+
+    .comments {
+      width: 100%;
+    }
+
+    .btn-course-upvote {
+      width: 90%;
+    }
+
+    .comment-container {
+      width: 100%;
+      margin: 0;
+      background-color: #fff;
+      padding-top: 0px;
+      padding-bottom: 10px;
+    }
+
+    #new-comment-container {
+      margin-top: 40px;
+      padding-bottom: 20px;
+    }
+
+    .username {
+      font-size: 0.9em;
+    }
+
+    .createdat {
+      font-size: 0.7em;
+    }
+
+    .votes {
+      padding-right: 0;
+      width: 50px;
+    }
+
+    .submit-comment {
+      margin: 0;
+    }
+
+    button.upvote, button.downvote, .num-comment-votes {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-size: 1em;
+    }
+
+    .num-comment-votes {
+      padding-left: 4px;
+    }
+
+    .single-comment td.comment-info {
+      padding-left: 20px;
+    }
+
+    .author {
+      height: 35px;
+    }
+    
+}

@@ -1,0 +1,60 @@
+<template name="NavWithSearch">
+
+{{>Signin}}
+
+<nav class="navbar navbar-default navbar-fixed-top constant-nav">
+  <div class="container">
+    <div class="navbar-header row">
+      
+      <div class="logo col-md-2">
+        <h4><a href="/"><span id="cornell-title-nav">CORNELL</span><br>COURSE REVIEW</a></h4>
+      </div>
+      <div class="search-icon col-md-1">
+                      <i class="glyphicon glyphicon-search"></i>
+      </div> 
+      <div id="search-in-nav" class="col-md-7">
+          <div class="input-group col-md-7">
+              <input type="text" class="form-control input-lg course-nav-search" autocomplete="off" spellcheck="off"
+              placeholder="Search for classes" name="course" />
+              
+              <!-- change class name -->
+              {{#if getCourses}}
+                <div class="search-results-nav">
+                   <span id="dummy-nav">COURSES</span>
+                  {{#each getCourses}}
+                    <div class="search-result-nav course">
+                      <h4><span class="catalog-no">{{{catalog}}}</span>&nbsp;&nbsp;
+                      {{{titleLong}}}</h4>
+                    </div>
+                  {{/each}}
+                </div>
+                {{/if}}
+              <!-- search result -->
+
+          </div>
+          </div>
+      
+    <div class="in-search col-md-4">
+      {{#if currentUser}}
+        <a href="#" class="user-dropdown btn-lg btn-primary navbar-right nav-btn dropdown-toggle">
+          <span class="user-in-nav">
+            <span class="user-score">score: {{currentUser.score}}</span>
+            <span class="user-name">{{currentUser.username}}</span>
+            <i class="glyphicon glyphicon-chevron-down"></i>
+          </span>
+          <ul class="user-dropdown-menus dropdown-menu">
+            <li role="presentation" class="user-profile"><a href='#' role="menuitem">Profile</a></li>
+            <li role="presentation" class="edit-account"><a href='#' role="menuitem">Edit Account</a></li>
+            <li role="presentation" class="logout"><a href='#' role="menuitem">Logout</a></li>
+          </ul>
+        </a>
+      {{else}}
+        <a href="#SigninModal" class="btn btn-lg btn-primary navbar-right nav-btn" data-toggle="modal">SIGN IN</a>
+      {{/if}}
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+</template>

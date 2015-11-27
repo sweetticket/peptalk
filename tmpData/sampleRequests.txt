@@ -1,0 +1,3 @@
+# all subjects
+
+https://classes.cornell.edu/api/2.0/config/subjects.json?roster=FA14

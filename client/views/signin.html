@@ -1,0 +1,33 @@
+<template name="Signin">
+<div id="SigninModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">  
+      <div class="modal-header default-modal-header">
+        <h4 class="modal-title">Sign In</h4>
+      </div>
+      {{> SigninForm}}
+    </div>
+  </div>
+</div>
+</template>
+
+
+<template name="SigninForm">
+  <form id="sign-in-form">
+    <div class="modal-body container signin-body">
+
+      Please login with your @cornell.edu cmail
+
+      <p class="signin_error error_message">
+        {{ loginErrorMessage }}
+      </p>
+
+      <button type="submit" class="btn btn-primary">Sign In with Cmail</button> 
+      <button type="button" class="btn btn-default cancel-btn" data-dismiss="modal">Cancel</button>
+      
+    </div>
+    <div class="modal-footer">
+
+    </div>
+  </form>
+</template>

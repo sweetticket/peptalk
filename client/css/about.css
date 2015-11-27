@@ -1,0 +1,22 @@
+.answer {
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+.answer ul {
+    padding-left: 20px;
+}
+
+.about-container h2 {
+    padding-bottom: 5px;
+}
+
+.about-link:link, .about-link:visited {
+    color: #B23636;
+    text-decoration: none;
+}
+
+.about-link:hover {
+    color: #942222;   
+}

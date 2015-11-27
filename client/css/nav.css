@@ -1,0 +1,399 @@
+.btn-primary:link, .btn-primary:visited, .btn-primary, .btn-primary:focus {
+    background-color: #B23636;
+    border-color: #B23636;
+    color: #fff;
+    font-family: BikoRegular;
+    outline: none;
+}
+
+.nav-btn:link, .nav-btn:visited {
+    background-color: rgba(255, 255, 255, 0);
+    border-color: rgba(255, 255, 255, 0);
+    color: #666666;
+    font-family: BikoRegular;
+    outline: none;
+}
+
+.btn, .btn:focus {
+    line-height: 23px;
+    outline: none;
+}
+
+a:link, a:hover, a:visited{
+  text-decoration: none;
+}
+
+.btn-primary:hover{
+  background-color: #942222;
+  border-color: #942222;
+  color: #fff;
+  outline: none;
+}
+
+.nav-btn:hover {
+  outline: none;
+  color: #000;
+  border-color: rgba(102, 102, 102, 0);
+  border-bottom: rgba(219, 95, 95, 0.3) solid 5px;
+  background-color: rgba(255, 255, 255, 0);
+    -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+.navbar {
+  background-color: rgba(255,255,255,0.9);
+  border-bottom: none;
+}
+
+.navtext {
+  /*font-size: 18px;*/
+  padding-top: 10px;
+}
+
+.username{
+  font-weight: bold;
+  color: #B23636;
+}
+
+.hidden {
+  display: none;
+}
+
+#cornell-title-nav {
+  font-family: BikoBold;
+}
+
+#cornell-title-nav a {
+  color: #942222;
+}
+
+.logo a:visited {
+  color: #942222;
+}
+
+.logo a:hover {
+  color: #751B1B;
+  -webkit-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+}
+
+input.course-nav-search {
+  font-size: 0.8em;
+}
+
+.user-in-nav {
+  font-family: BikoBold;
+  padding-right: 3px;
+  /*font-size: 16px;*/
+}
+
+.user-dropdown-home {
+  margin-right: 10px;
+}
+
+.user-dropdown i {
+  font-size: 16px;
+}
+
+.user-dropdown:hover {
+  border: 0;
+}
+
+.user-dropdown-menus{
+    background-color: rgba(255,255,255,0.8);
+    border: 0;
+}
+
+.user-dropdown-menus ul {
+  float: left;
+}
+
+.user-dropdown-menus li {
+  text-align: center;
+  font-size: 16px;
+  font-family: BikoRegular;
+}
+
+.user-dropdown-menus a {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.user-dropdown-menus-home {
+  margin-right: 15px;
+}
+
+#dummy-nav {
+  height: 70px;
+}
+
+.user-score {
+  padding-right: 17px;
+  font-family: Moon;
+  font-size: 14px;
+  font-weight: bold;
+  color: #942222;
+}
+
+.search-input-container {
+  position: relative;
+}
+
+i.search-input-icon {
+  position: absolute;
+  pointer-events: none;
+  left: 0;
+  padding-left: 5px;
+  line-height: 50px;
+  opacity: 0.6;
+}
+
+.course-nav-search {
+  padding: 0 10px 0 35px;
+}
+
+/* ----------- Desktop ----------- */
+@media only screen 
+  and (min-width: 737px) { 
+
+#search-in-nav {
+  height: 70px;
+}
+
+.navbar-header {
+  width: 100%;
+  height: 70px;
+}
+
+#search-in-nav .input-group {
+  width: 100%;
+} 
+
+#search-in-nav input {
+  border: 0;
+  height: 70px;
+  width: 80%;
+  background: none;
+}
+
+#search-in-nav input:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+#search-in-nav .tt-dropdown-menu {
+  margin-top: 0px;
+  background-color: rgba(255,255,255,0.95);
+}
+
+.search-results-nav {
+  background-color: rgba(255, 255, 255, 1);
+  font-family: Moon;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  margin-top: 70px;
+}
+
+.search-result-item {
+  background-color: rgba(255, 255, 255, 0);
+  cursor: pointer;
+  padding: 15px 15px 5px 10px;
+  margin: 0 5px 5px 20px;
+  font-size: 1em;
+  line-height: 1em;
+}
+
+.search-icon-container {
+  opacity: 0.6;
+  height: 70px;
+  line-height: 70px;
+}
+
+nav .container {
+  width: 100%;
+}
+
+.nav-right-menus {
+  height: 70px;
+  line-height: 70px;
+}
+
+.nav-right-menus {
+  height: 70px;
+  line-height: 70px;
+}
+
+.nav-right-menus .nav-btn {
+  line-height: 50px;
+}
+
+.logo {
+  font-family: Moon;
+  /*padding: 5px 0 0 35px;*/
+  height: 70px;
+  border-right: 1px solid #e9e9e9;
+}
+
+table.logo-inside {
+  height: 70px;
+  vertical-align: center;
+}
+
+.user-dropdown.btn-lg {
+  padding: 0;
+  line-height: 70px;
+}
+
+i.search-input-icon {
+  height: 70px;
+  line-height: 70px;
+}
+    
+
+}
+
+/* ----------- iPhone ----------- */
+
+/* Portrait  */
+@media only screen 
+    and (min-width: 320px) 
+    and (max-width: 736px) {
+    
+    .navbar-fixed-top {
+      height: 50px;
+      margin-bottom: 10px;
+      line-height: 50px;
+      font-family: Moon;
+      font-size: 1em;
+      padding-left: 0;
+      padding-right: 20px;
+    }
+
+    nav.container {
+        padding: 0;
+    }
+
+    i.search-input-icon {
+      font-size: 0.8em;
+      height: 50px;
+    }
+
+    #cornell-title-nav {
+      font-family: Moon;
+      font-weight: bold;
+      color: #942222;
+    }
+
+    .container-fluid > .navbar-header {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+
+    #search-in-nav {
+      height: 50px;
+      /*padding: 0;*/
+    }
+
+    .search-results-nav {
+      background-color: rgba(255, 255, 255, 1);
+      font-family: Moon;
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+      padding-bottom: 10px;
+      margin-bottom: 30px;
+      margin-top: 50px;
+    }
+
+    #search-in-nav .input-group {
+      height: 100%;
+      width: 100%;
+      font-size: 0.8em;
+    }
+
+    #search-in-nav .input-group input {
+      border: 0;
+      height: 50px;
+      background: none;
+      /*width: 100%;*/
+    }
+
+    #search-in-nav .input-group input:focus {
+        outline: 0;
+        box-shadow: none;
+    }
+
+    .search-result-item {
+      background-color: rgba(255, 255, 255, 0);
+      cursor: pointer;
+      padding: 15px 15px 5px 10px;
+      margin: 0 5px 5px 20px;
+      font-size: 0.8em;
+      line-height: 1em;
+    }
+
+    .catalog-no {
+      font-family: BikoBold;
+      font-size: 1em;
+    }
+
+    #search-in-nav input:focus {
+      outline: 0;
+      box-shadow: none;
+    }
+
+    .nav-right-menus {
+      padding-left: 0;
+    }
+
+    .nav-right-menus .nav-btn {
+      height: 50px;
+      line-height: 50px;
+      padding: 0;
+    }
+
+    .search-icon-container {
+      opacity: 0.6;
+      height: 50px;
+      line-height: 50px;
+      padding-left: 0;
+    }
+
+    .user-dropdown-menus {
+        position: absolute;
+        right: 50px;
+    }
+
+    .navbar-header-home {
+      height: 50px;
+    }
+
+    .navbar-header-home .navbar-right {
+      float: right;
+    }
+
+    a.nav-btn {
+      padding-top: 10px;
+      font-size: 0.8em;
+    }
+
+    .nav-btn:link, .nav-btn:visited {
+      background-color: rgba(255, 255, 255, 0);
+      border-color: rgba(255, 255, 255, 0);
+      color: #666666;
+      font-family: BikoRegular;
+      outline: none;
+      /*padding-top: 27px;*/
+    }
+
+    .user-dropdown-menus{
+      background-color: rgba(255,255,255,0.8);
+      border: 0;
+      left: auto;
+      right: 0;
+    }
+
+}
