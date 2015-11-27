@@ -11,12 +11,11 @@ Router.configure({
   },
   onAfterAction: function() {
     // Clear previous search results
-    CourseSearch.store.remove({});
   }
 });
 
 Router.route('/', function () {
-  GARecordPage('/');
+  // GARecordPage('/');
   this.render('Main', {
     to: 'content'
   }); // Yield Main template to where {{> yield "content"}} is in layout.html
@@ -39,20 +38,20 @@ Router.route('/about', {
       return;
     }
 
-    SEO.set({
-      title: "Cornell Course Review",
-      meta: {
-        'description': "Cornell Course Review is a collaborative website that helps students select the best classes to enroll."
-      },
-      og: {
-        'image': 'http://cornellcoursereview.me/fbimg.png',
-        'title': 'Cornell Course Review',
-        'type': 'website',
-        'url': 'http://cornellcoursereview.me/about',
-        'site_name': 'Cornell Course Review',
-        'description': 'Cornell Course Review is a collaborative website that helps students select the best classes to enroll.'
-      }
-    });
+    // SEO.set({
+    //   title: "Cornell Course Review",
+    //   meta: {
+    //     'description': "Cornell Course Review is a collaborative website that helps students select the best classes to enroll."
+    //   },
+    //   og: {
+    //     'image': 'http://cornellcoursereview.me/fbimg.png',
+    //     'title': 'Cornell Course Review',
+    //     'type': 'website',
+    //     'url': 'http://cornellcoursereview.me/about',
+    //     'site_name': 'Cornell Course Review',
+    //     'description': 'Cornell Course Review is a collaborative website that helps students select the best classes to enroll.'
+    //   }
+    // });
   }
 });
 
@@ -76,19 +75,19 @@ Router.route('/courses/:_catalog', {
     var course = Courses.findOne({catalog: courseCatalog});
 
 
-    SEO.set({
-      title: "Cornell Course Review: " + course.catalog + " - " + course.titleLong + '('+ course.instructor +')',
-      meta: {
-        'description': "Cornell Course Review: " + course.catalog + " - " + course.titleLong + " : " + course.description
-      },
-      og: {
-        'image': 'http://cornellcoursereview.me/fbimg.png',
-        'title': "Cornell Course Review: " + course.catalog + " - " + course.titleLong + '('+ course.instructor +')',
-        'type': 'website',
-        'url': 'http://cornellcoursereview.me/courses/'+course.catalog,
-        'site_name': 'Cornell Course Review'
-      }
-    });
+    // SEO.set({
+    //   title: "Cornell Course Review: " + course.catalog + " - " + course.titleLong + '('+ course.instructor +')',
+    //   meta: {
+    //     'description': "Cornell Course Review: " + course.catalog + " - " + course.titleLong + " : " + course.description
+    //   },
+    //   og: {
+    //     'image': 'http://cornellcoursereview.me/fbimg.png',
+    //     'title': "Cornell Course Review: " + course.catalog + " - " + course.titleLong + '('+ course.instructor +')',
+    //     'type': 'website',
+    //     'url': 'http://cornellcoursereview.me/courses/'+course.catalog,
+    //     'site_name': 'Cornell Course Review'
+    //   }
+    // });
     
     this.render('CourseDetail', {
       to: 'content',
@@ -159,7 +158,7 @@ Router.route('/users/:_userId', function() {
 
   Meteor.subscribe("userReviews", userId);
 
-  GARecordPage("/users/"+userId);
+  // GARecordPage("/users/"+userId);
 
   if (userId != Meteor.userId()) {
     Meteor.subscribe("otherUserData", userId); // allow limited information about other user
@@ -173,51 +172,51 @@ Router.route('/users/:_userId', function() {
    });
 });
 
-Router.route('/secret/admin', function() {
-  if (!Meteor.user()) {
-    Session.set("openSignInModal", true);
-    Router.go('/');
-    return;
-  } else if (Meteor.user().role != "admin") {
-    Router.go('/');
-    return;
-  }
+// Router.route('/secret/admin', function() {
+//   if (!Meteor.user()) {
+//     Session.set("openSignInModal", true);
+//     Router.go('/');
+//     return;
+//   } else if (Meteor.user().role != "admin") {
+//     Router.go('/');
+//     return;
+//   }
   
-  Router.route('/users/:_userId/notifications', function () {
-  var userId = this.params._userId;
+  // Router.route('/users/:_userId/notifications', function () {
+  // var userId = this.params._userId;
   
-  if (!Meteor.user()) {
-    Session.set("openSignInModal", true);
-    Router.go('/');
-    return;
-  }
+  // if (!Meteor.user()) {
+  //   Session.set("openSignInModal", true);
+  //   Router.go('/');
+  //   return;
+  // }
 
-  GARecordPage("/users/"+userId+"/notifications");
+  // GARecordPage("/users/"+userId+"/notifications");
   
-  if (userId == Meteor.userId()) {
-    Meteor.subscribe("userNotifs", userId); // allow limited information about other user
-  }
+  // if (userId == Meteor.userId()) {
+  //   Meteor.subscribe("userNotifs", userId); // allow limited information about other user
+  // }
 
-  if (userId == Meteor.userId()) {
-      this.render('AllNotifications', {
-        to: 'content',
-        data: function () {
-          return Meteor.users.findOne({_id: userId});
-        }
-       });
-  } else {
-    Router.go("/users/"+Meteor.userId()+"/notifications");
-  }
+  // if (userId == Meteor.userId()) {
+  //     this.render('AllNotifications', {
+  //       to: 'content',
+  //       data: function () {
+  //         return Meteor.users.findOne({_id: userId});
+  //       }
+  //      });
+  // } else {
+  //   Router.go("/users/"+Meteor.userId()+"/notifications");
+  // }
 
- });
+ // });
 
 
   
-  var that = this;
-  Meteor.subscribe('infoForAdmin', function() {
-    that.render('Admin', {
-      to: 'content',
-    });
-  });
+  // var that = this;
+  // Meteor.subscribe('infoForAdmin', function() {
+  //   that.render('Admin', {
+  //     to: 'content',
+  //   });
+  // });
 
-});
+  // });

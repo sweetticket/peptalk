@@ -1,24 +1,24 @@
 Comments = new Mongo.Collection("comments");
 
 Meteor.methods({
-  addComment: function (text, courseCatalog) {
+  addComment: function (info) {
 
     if (!Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
 
     var comment = {
-      courseCatalog: courseCatalog,
-      owner: Meteor.userId(),
-      username: Meteor.user().username,
-      text: text,
-      votes: 0,
-      upvoters: [],
-      downvoters: [],
+      courseId: info["courseId"],
+      postId: info["postId"],
+      networkId: info["networkId"],
+      authorId: Meteor.userId(),
+      isAnon: info["isAnon"],
+      body: info["body"],
       createdAt: new Date()
     };
 
     Comments.insert(comment);
+    Meteor.call("Posts.addFollower", Meteor.userId);
 
   },
 
@@ -28,7 +28,7 @@ Meteor.methods({
     }
 
     var comment = Comments.findOne({"_id": commentId});
-    if ((Meteor.userId() == comment.owner) || (Meteor.user().role == "admin")) {
+    if ((Meteor.userId() == comment.authorId) || (Meteor.user().role == "instructor")) {
       Comments.remove(commentId);
     }
   },
@@ -39,93 +39,11 @@ Meteor.methods({
     }
 
     var comment = Comments.findOne({"_id": commentId});
-    if (((Meteor.userId() == comment.owner) || (Meteor.user().role == "admin")) && isValidComment(newText)) {
+    if (((Meteor.userId() == comment.authorId) || (Meteor.user().role == "instructor")) && isValidComment(newText)) {
       Comments.update(commentId, {
-        $set: {'text': newText}
+        $set: {'body': newText}
       });
     }
   },
-
-  upVote: function(commentId) {
-    var comment = Comments.findOne({"_id": commentId});
-    
-    // this is captured on the client side, but we are double checking
-    if (!Meteor.userId() || comment.owner == Meteor.userId()) {
-      return;
-    }
-    var msg = Meteor.userId() + 'upvoted your review for ' + comment.courseCatalog;
-    var link = '/courses/' + comment.courseCatalog;
-    var newNotif = Notifications.createNotifcation(comment.owner, Meteor.userId(),
-                                                     'upvote', msg, link);
-    if (comment.downvoters.indexOf(Meteor.userId()) > -1) {
-      var idx = comment.downvoters.indexOf(Meteor.userId());
-      comment.downvoters.splice(idx, 1);
-      comment.upvoters.push(Meteor.userId());
-      Comments.update(commentId, {
-        $set: {'upvoters': comment.upvoters, 'downvoters': comment.downvoters},
-        $inc: {'votes': 2}
-      });
-      Users.addNotification(comment.owner, newNotif);
-      
-      return true;
-    } else if (comment.upvoters.indexOf(Meteor.userId()) > -1) {
-      var idx = comment.upvoters.indexOf(Meteor.userId());
-      comment.upvoters.splice(idx, 1); // updates in place
-      Comments.update(commentId, {
-        $set: {'upvoters': comment.upvoters},
-        $inc: {'votes': -1}
-      });
-      return false;
-    } else {
-      comment.upvoters.push(Meteor.userId());
-      Comments.update(commentId, {
-        $set: {'upvoters': comment.upvoters},
-        $inc: {'votes': 1}
-      });
-      Users.addNotification(comment.owner, newNotif);
-      return true;
-    }
-  },
-
-  downVote: function(commentId) {
-    var comment = Comments.findOne({"_id": commentId});
-    if (!Meteor.userId() || comment.owner == Meteor.userId()) {
-      return;
-    }
-    var msg = Meteor.userId() + 'downvoted your review for ' + comment.courseCatalog;
-    var link = '/courses/' + comment.courseCatalog;
-    var newNotif = Notifications.createNotifcation(comment.owner, Meteor.userId(),
-                                                     'downvote', msg, link);
-    
-    if (comment.upvoters.indexOf(Meteor.userId()) > -1) {
-      var idx = comment.upvoters.indexOf(Meteor.userId());
-      comment.upvoters.splice(idx, 1);
-      comment.downvoters.push(Meteor.userId());
-      Comments.update(commentId, {
-        $set: {'downvoters': comment.downvoters, 'upvoters': comment.upvoters},
-        $inc: {'votes': -2}
-      });
-      Users.addNotification(comment.owner, newNotif);
-      return true;
-
-    } else if (comment.downvoters.indexOf(Meteor.userId()) > -1) {
-      var idx = comment.downvoters.indexOf(Meteor.userId());
-      comment.downvoters.splice(idx, 1); // updates in place
-      Comments.update(commentId, {
-        $set: {'downvoters': comment.downvoters},
-        $inc: {'votes': 1}
-      });
-      return false;
-    
-    } else {
-      comment.downvoters.push(Meteor.userId());
-      Comments.update(commentId, {
-        $set: {'downvoters': comment.downvoters},
-        $inc: {'votes': -1}
-      });
-      Users.addNotification(comment.owner, newNotif);
-      return true;
-    }
-  }
 
 });

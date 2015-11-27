@@ -3,12 +3,12 @@ Courses = new Mongo.Collection("courses");
 Meteor.methods({
   addCourse: function (data, callback) {
     var course = {
-      "networkId": data["networkId"]
+      "networkId": data["networkId"],
       "title": data["title"],
       "catalog": data["catalog"],
-      "categories":[]
+      "categories":[],
     };
-    
+
     Courses.insert(course);
   },
 

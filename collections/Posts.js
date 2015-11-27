@@ -6,20 +6,23 @@ Posts = new Mongo.Collection('posts');
 //   doc.createdAt = new Date();
 // });
 
-Posts.helpers({
-  datePosted: function() {
-    return moment(this.createdAt).format('M/D');
-  },
-  author: function() {
-    return Meteor.users.findOne({_id: this.userId});
-  },
-  upvotes: function() {
-    return Meteor.users.find({_id: {$in: this.upvoterIds}}).count();
-  },
-  numberOfComments: function() {
-    return Comments.find({postId: this._id}).count();
-  },
-});
+// Posts.helpers({
+//   datePosted: function() {
+//     return moment(this.createdAt).format('M/D');
+//   },
+//   dateUpdated: function() {
+//     return moment(this.updatedAt).format('M/D');
+//   },
+//   author: function() {
+//     return Meteor.users.findOne({_id: this.authorId});
+//   },
+//   upvotes: function() {
+//     return Meteor.users.find({_id: {$in: this.upvoterIds}}).count();
+//   },
+//   numberOfComments: function() {
+//     return Comments.find({postId: this._id}).count();
+//   },
+// });
 
 Meteor.methods({
 
@@ -27,24 +30,25 @@ Meteor.methods({
     var now = new Date();
     return Posts.insert({
       body: info["body"],
-      authorId: info["authorId"],
+      authorId: Meteor.userId(),
       upvoterIds: [],
-      followerIds: [info["authorId"]],
+      followerIds: [Meteor.userId()],
       numLikes: 0,
       courseId: info["courseId"],
       isPrivate: info["isPrivate"],
       isAnon: info["isAnon"],
-      type: info["type"],
-      networkId: info["networkId"],
+      type: info["type"], // note, question, answer
+      parentId: info["parentId"], // only if it this is an answer
+      networkId: Meteor.user().networkId,
       createdAt: now,
-      updatedAt: now
-      instructorAnswer: null,
-      studentAnswer: null,
+      updatedAt: now,
+      category: info["category"],
     });
   },
 
   //DELETE COMMENTS, UPVOTERS, AND DOWNVOTERS
   'Posts.delete': function (postId) {
+
     Posts.remove({
       _id: postId
     });
@@ -56,25 +60,40 @@ Meteor.methods({
     // });
   },
 
-  'Posts.updateInstructorAnswer': function (postId, answer) {
-    Posts.update({ _id: postId}, {
-        "$set": { instructorAnswer: answer }
-        });
-    // Notify followers
-  },
-
-  'Posts.updateStudentAnswer': function (postId, answer) {
-    Posts.update({ _id: postId}, {
-        "$set": { studentAnswer: answer }
-        });
-    // Notify followers
-  },
-
-  'Posts.updatePost': function(postId, newinfo) {
+  'Posts.updatePost': function (postId, newinfo) {
     Posts.update({_id: postId}, {
       "$set": newinfo
     });
-  }
+  },
+
+  'Posts.flag': function (postId, reason) {
+    // TODO: send email to instructor...
+  },
+
+  'Posts.addFollower': function (postId, userId) {
+    var post = Posts.findOne({
+      _id: postId
+    });
+    post.followerIds.push(userId);
+    Posts.update({ _id: postId}, {
+        "$set": { followerIds: post.followerIds }
+        }
+      );
+  },
+
+  'Posts.removeFollower': function (postId, userId) {
+    var post = Posts.findOne({
+      _id: postId
+    });
+    var index = post.followerIds.indexOf(userId);
+    if (index >= 0) {
+      var newFollowers = post.followerIds.splice(index, 1);
+      Posts.update({ _id: postId}, {
+          "$set": { followerIds: newFollowers }
+          }
+        );
+    }
+  },
 
   'Posts.decreaseNumLikes': function (postId) {
     var post = Posts.findOne({
