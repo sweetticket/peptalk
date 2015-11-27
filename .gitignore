@@ -2,3 +2,4 @@ dataCollector/venv
 dbDump/
 server/smtp.js
 lib/server/config.js
+.meteor/
