@@ -40,11 +40,11 @@ if (Meteor.isServer) {
     }
   });
 
-  Meteor.publish("userReviews", function(userId) {
-    var reviews = Comments.find({owner: userId},
-      {fields: { 'text': 1, 'votes': 1, 'courseCatalog': 1}});
-    return reviews;
-  });
+  // Meteor.publish("userReviews", function(userId) {
+  //   var reviews = Comments.find({owner: userId},
+  //     {fields: { 'text': 1, 'votes': 1, 'courseCatalog': 1}});
+  //   return reviews;
+  // });
 
   // Meteor.publish("infoForAdmin", function() {
   //   if (this.userId) {
