@@ -1,4 +1,4 @@
-Template.SearchClass.helpers({
+Template.SearchClasses.helpers({
   // 'who': function() {
   //   if (!Session.get("signUpMode")) {
   //     Session.set("signUpMode", "student");
@@ -11,12 +11,14 @@ Template.SearchClass.helpers({
   // }
 });
 
-Template.SearchClass.onRendered(function() {
+Template.SearchClasses.onRendered(function() {
   // todo: check if Meteor.user() && Meteor.user().role == 'student'
-  // probably need to publish & subscribe user data
+  if (!Meteor.user() || Meteor.user().role != 'student'){
+    Router.go('/');
+  }
 });
 
-Template.SearchClass.events({
+Template.SearchClasses.events({
 
   // 'change #email': function (e, template) {
   //   _checkEmailValid();

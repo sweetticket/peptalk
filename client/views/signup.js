@@ -71,8 +71,9 @@ Template.SignUp.events({
     var email = $('#email').val().trim();
     var password = $('#password').val();
     var password2 = $('#password2').val();
+    var fullname = $('#fullname').val().trim();
 
-    if (!(email.length && password.length && password2.length)) {
+    if (!(fullname.length && email.length && password.length && password2.length)) {
       $('#incomplete').removeClass("hide");
       if (!email.length) {
         $('#email').parent().addClass('has-error');
@@ -83,8 +84,12 @@ Template.SignUp.events({
       if(!password2.length) {
         $('#password2').parent().addClass('has-error');
       }
+      if(!fullname.length) {
+        $('#fullname').parent().addClass('has-error');
+      }
     } else {
       $('#incomplete').addClass("hide");
+      $('.has-error').removeClass('has-error');
       if (_checkEmailValid() && _checkPasswordMatch()) {
         console.log("all fields are valid..");
         // todo: send validation email
@@ -92,7 +97,9 @@ Template.SignUp.events({
 
         Accounts.createUser({
           email: email.toLowerCase(),
-          password: password
+          password: password,
+          role: Session.get("signUpMode"),
+          fullname: fullname
         }, function (err) {
           if (err) {
             console.log("createUser failed", err);

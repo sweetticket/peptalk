@@ -12,8 +12,9 @@ Template.NewClass.helpers({
 });
 
 Template.NewClass.onRendered(function() {
-  // todo: check if Meteor.user() && Meteor.user().role == 'instructor'
-  // probably need to publish & subscribe user data
+  if (!Meteor.user() || Meteor.user().role != 'instructor'){
+    Router.go('/');
+  }
 });
 
 Template.NewClass.events({

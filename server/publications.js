@@ -25,7 +25,7 @@ if (Meteor.isServer) {
   Meteor.publish("userData", function () {
     if (this.userId) {
       return Meteor.users.find({_id: this.userId},
-        {fields: { 'services': 1, 'netId': 1, 'email': 1, 'score': 1, 'username': 1, 'role': 1 }});
+        {fields: { 'emails': 1, 'fullname': 1, 'role': 1, 'courses': 1, 'networkId': 1 }});
     } else {
       this.ready();
     }
