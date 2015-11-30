@@ -66,7 +66,7 @@ Template.SignUp.events({
     var password = $('#password').val();
     var password2 = $('#password2').val();
 
-    if (!(email.length && email.length && email.length)) {
+    if (!(email.length && password.length && password2.length)) {
       $('#incomplete').removeClass("hide");
       if (!email.length) {
         $('#email').parent().addClass('has-error');
