@@ -27,7 +27,7 @@ var BLACKLISTED_EMAILS = [
 ]
 
 Meteor.methods({
-  addNetwork: function (domain) {
+  addNetwork: function (domain, name) {
     if (_.contains(BLACKLISTED_EMAILS, domain)) {
       throw {
         reason: "You cannot use " + domain + ". Please use your organization email.",
@@ -37,6 +37,7 @@ Meteor.methods({
 
     var network = {
       domain: domain,
+      name: name,
       createdAt: new Date()
     }
 

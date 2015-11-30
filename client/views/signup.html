@@ -1,0 +1,27 @@
+<template name="SignUp">
+  {{> LandingNav}}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>{{who}} Get Started</h2>
+        <form class="signup-form">
+          <div class="form-group">
+            <label for="email">Your school email:</label>
+            <input type="email" class="form-control" name="email" id="email">
+          </div>
+          <div class="form-group">
+            <label for="password">Choose a password:</label>
+            <input type="password" class="form-control" name="password" id="password">
+          </div>
+          <div class="form-group">
+            <label for="password2">Confirm password:</label>
+            <input type="password" class="form-control" name="password2" id="password2">
+          </div>
+          <div class="signup-submit">
+            <button type="submit" class="btn btn-default">Sign Up</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</template>

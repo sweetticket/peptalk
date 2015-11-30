@@ -64,6 +64,12 @@ Router.route('/about', {
   }
 });
 
+Router.route('/signup', function() {
+  this.render('SignUp', {
+    to: 'content'
+  });
+});
+
 Router.route('/courses/:_catalog', {
   waitOn: function() {
     var courseCatalog = this.params._catalog.toUpperCase();

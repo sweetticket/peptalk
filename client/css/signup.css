@@ -1,0 +1,13 @@
+h2 {
+	text-align: center;
+}
+
+.signup-form {
+	width: 70%;
+	min-width: 500px;
+	margin: 0 auto;
+}
+
+.signup-submit {
+	text-align: center;
+}
