@@ -70,6 +70,18 @@ Router.route('/signup', function() {
   });
 });
 
+Router.route('/new', function() {
+  this.render('NewClass', {
+    to: 'content'
+  });
+});
+
+Router.route('/search', function() {
+  this.render('SearchClasses', {
+    to: 'content'
+  });
+});
+
 Router.route('/courses/:_catalog', {
   waitOn: function() {
     var courseCatalog = this.params._catalog.toUpperCase();

@@ -83,8 +83,6 @@ Meteor.startup(function() {
       var role = options["role"]
       // TODO: EMAIL SETTINGS
 
-      user.icon = Utils.getRandomIcon();
-
       if (network) {
         user.networkId = network._id;
       } else {

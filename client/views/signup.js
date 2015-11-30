@@ -29,6 +29,8 @@ var _checkPasswordMatch = function() {
 
 var _checkEmailValid = function() {
   var email = $('#email').val().trim();
+  $('#blackListHelpBlock').addClass('hide');
+  $('#emailExistsHelpBlock').addClass('hide');
   if (!email.length) {
     $('#email').parent().removeClass('has-error');
     $('#emailHelpBlock').addClass('hide');
@@ -65,6 +67,7 @@ Template.SignUp.rendered = function() {
 
 Template.SignUp.events({
   'submit form.signup-form': function (e, template){
+    e.preventDefault();
     var email = $('#email').val().trim();
     var password = $('#password').val();
     var password2 = $('#password2').val();
@@ -86,10 +89,38 @@ Template.SignUp.events({
         console.log("all fields are valid..");
         // todo: send validation email
         // todo: create new user
-      }
-    }
 
-    event.preventDefault();  
+        Accounts.createUser({
+          email: email.toLowerCase(),
+          password: password
+        }, function (err) {
+          if (err) {
+            console.log("createUser failed", err);
+
+            if (err.reason === "Email already exists.") {
+             $('#emailExistsHelpBlock').removeClass('hide');
+            } else if (err.reason === "BLACKLIST_DOMAIN") {
+              $('#blackListHelpBlock').removeClass('hide');
+            }
+            return false;
+          } else {
+            var route;
+            if (Session.get("signUpMode") == "instructor") {
+              route = '/new';
+            } else {
+              route = '/search';
+            }
+            Session.set("signUpMode", undefined);
+            Router.go(route);
+          }
+        
+        // ga('send', 'event', 'user', 'signup', {
+        //   email: Meteor.user().emails[0].address
+        // });
+      
+        });
+      }
+    } 
   },
 
   'change #email': function (e, template) {

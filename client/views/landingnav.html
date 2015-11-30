@@ -20,17 +20,21 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        {{#if isLandingPage}}
-        <li class="dropdown">
-          <button type="button" class="btn btn-default navbar-btn signup-btndropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign Up</button>
-          <ul class="dropdown-menu">
-            <li><a href="#" class="signup-instructor-nav">As Instructor</a></li>
-            <li><a href="#" class="signup-student-nav">As Student</a></li>
-          </ul>
-        </li>
-        {{/if}}
+        {{#if isSignedIn}}
+          <li><button type="button" class="btn btn-default navbar-btn signout-btn">Sign Out</button></li>
+        {{else}}
+          {{#if isLandingPage}}
+            <li class="dropdown">
+              <button type="button" class="btn btn-default navbar-btn signup-btndropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign Up</button>
+              <ul class="dropdown-menu">
+                <li><a href="#" class="signup-instructor-nav">As Instructor</a></li>
+                <li><a href="#" class="signup-student-nav">As Student</a></li>
+              </ul>
+            </li>
+            {{/if}}
 
-        <li><button type="button" class="btn btn-default navbar-btn signin-btn">Sign In</button></li>
+          <li><button type="button" class="btn btn-default navbar-btn signin-btn">Sign In</button></li>
+        {{/if}}
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
