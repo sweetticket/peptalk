@@ -32,13 +32,16 @@ var _checkEmailValid = function() {
   if (!email.length) {
     $('#email').parent().removeClass('has-error');
     $('#emailHelpBlock').addClass('hide');
+    return false;
   } else if (!Utils.validateEmail(email)) {
     $('#email').parent().addClass('has-error');
     $('#emailHelpBlock').removeClass('hide');
+    return false;
   } else {
     $('#email').parent().removeClass('has-error');
     $('#email').parent().addClass('has-success');
     $('#emailHelpBlock').addClass('hide');
+    return true;
   }
 }
 
@@ -78,8 +81,9 @@ Template.SignUp.events({
         $('#password2').parent().addClass('has-error');
       }
     } else {
+      $('#incomplete').addClass("hide");
       if (_checkEmailValid() && _checkPasswordMatch()) {
-        $('#incomplete').addClass("hide");
+        console.log("all fields are valid..");
         // todo: send validation email
         // todo: create new user
       }
