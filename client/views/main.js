@@ -9,7 +9,6 @@ if (Meteor.isClient) {
   Template.Main.events({
      'click .button-container': function(e, template) {
       e.preventDefault();
-      debugger
         if ($(e.target).hasClass('signup-instructor')){
           Session.set("signUpMode", "instructor");
           Router.go('/signup');
