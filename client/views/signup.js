@@ -93,7 +93,6 @@ Template.SignUp.events({
       if (_checkEmailValid() && _checkPasswordMatch()) {
         console.log("all fields are valid..");
         // todo: send validation email
-        // todo: create new user
 
         Accounts.createUser({
           email: email.toLowerCase(),
@@ -107,6 +106,8 @@ Template.SignUp.events({
             if (err.reason === "Email already exists.") {
              $('#emailExistsHelpBlock').removeClass('hide');
             } else if (err.reason === "BLACKLIST_DOMAIN") {
+              $('#email').parent().addClass('has-success');
+              $('#email').parent().addClass('has-error');
               $('#blackListHelpBlock').removeClass('hide');
             }
             return false;

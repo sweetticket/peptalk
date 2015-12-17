@@ -13,7 +13,7 @@ Meteor.methods({
   addNetwork: function (domain, name) {
     if (_.contains(Utils.BLACKLISTED_EMAILS, domain)) {
       throw {
-        reason: "You cannot use " + domain + ". Please use your organization email.",
+        reason: "BLACKLIST_DOMAIN",
         details: "You cannot use " + domain + ". Please use your organization email."
       };
     }
