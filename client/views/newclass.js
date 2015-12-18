@@ -1,14 +1,7 @@
 Template.NewClass.helpers({
-  // 'who': function() {
-  //   if (!Session.get("signUpMode")) {
-  //     Session.set("signUpMode", "student");
-  //   }
-  //   if (Session.get("signUpMode") == "instructor") {
-  //     return "Instructors";
-  //   } else {
-  //     return "Students";
-  //   }
-  // }
+  'emaildomain': function() {
+    return Utils.getDomain(Meteor.user().emails[0].address);
+  }
 });
 
 Template.NewClass.onRendered(function() {

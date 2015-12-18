@@ -1,0 +1,13 @@
+h2, h3 {
+	text-align: center;
+}
+
+.newclass-form {
+	width: 70%;
+	min-width: 500px;
+	margin: 0 auto;
+}
+
+.create-submit {
+	text-align: center;
+}
